@@ -1,0 +1,30 @@
+$big-font: 15rem;
+
+.jumbo {
+    color: #333;
+    font-size: $big-font;
+    margin: 0;
+    text-shadow: 1px 2px 1px #DEDEDE, 2px 3px 0 #FEFEFE, -1px -1px 0 #222;
+}
+
+html {
+    body {
+        margin: 20px;
+        padding: 0;
+        background: 'white';
+    }
+}
+
+.active {
+    font-weight: bold;
+    background: 'blue';
+}
+
+.scorecard {
+  width: 50%;
+  display: inline-block;
+}
+
+.scorecard.right {
+  //margin-left: 20px;
+}

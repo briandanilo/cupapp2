@@ -22,12 +22,15 @@ class ExpenseHistory extends React.Component {
   renderHistory(){
     if (this.props.expenseHistory){
       var history = Array.from(this.props.expenseHistory)
-        .sort( (a,b) => {
-        return a.postTime > b.startTime ? -1 : 1; // ascending order
+      history.filter((i)=>{
+        return i.postTime
+      })
+      history.sort( (a,b) => {
+        return a.postTime > b.postTime ? -1 : 1; // ascending order
       })
       return (
         history.map((i)=>{
-          return (<p>{i.user} paid {i.amount} for {i.description} ({this.formatTime(i.postTime)})</p>)
+          return (<p>{i.user} paid ${i.amount} for {i.description} ({this.formatTime(i.postTime)})</p>)
         })
       )
     }

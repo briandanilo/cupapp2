@@ -37,6 +37,7 @@
     "fetch": "^1.1.0",
     "google-spreadsheet": "^2.0.4",
     "jquery": "^3.2.1",
+    "moment": "^2.20.1",
     "react": "^15.6.2",
     "react-bootstrap": "^0.32.0",
     "react-dom": "^15.6.2",

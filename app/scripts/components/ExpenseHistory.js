@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import container from '../containers/all.js'
 import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
 import readExpenseHistory from '../actions/readExpenseHistory.js';
+import moment from 'moment'
 
 class ExpenseHistory extends React.Component {
 
@@ -14,6 +15,10 @@ class ExpenseHistory extends React.Component {
     this.props.dispatch(readExpenseHistory())
   }
 
+  formatTime(t){
+    return moment(t).format('MM-DD hh:mm:ss a')
+  }
+
   renderHistory(){
     if (this.props.expenseHistory){
       var history = Array.from(this.props.expenseHistory)
@@ -22,7 +27,7 @@ class ExpenseHistory extends React.Component {
       })
       return (
         history.map((i)=>{
-          return (<p>{i.user} paid {i.amount} for {i.description}</p>)
+          return (<p>{i.user} paid {i.amount} for {i.description} ({this.formatTime(i.postTime)})</p>)
         })
       )
     }

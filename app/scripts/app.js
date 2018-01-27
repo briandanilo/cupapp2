@@ -6,7 +6,8 @@ import { Provider } from "react-redux";
 import AppRoot from "./components/app_root.js";
 import Transfer from "./components/Transfer.js";
 import Scorecard from "./components/Scorecard.js";
-import Expenses from "./components/Expenses.js"
+import Expenses from "./components/Expenses.js";
+import ExpenseHistory from "./components/ExpenseHistory.js";
 
 const Nav = () => (
   <ul className="nav nav-pills nav-justified">
@@ -16,15 +17,12 @@ const Nav = () => (
 );
 
 export default function app() {
-  console.log(window.location.href)
   render(
     <Provider store={store}>
       <Router>
         <div>
-          <Nav />
-          <Route exact path="/" component={Scorecard} />
-          <Route exact path="/Scorecard" component={Scorecard} />
-          <Route exact path="/Expenses" component={Expenses} />
+          <Route exact path="/" component={AppRoot} />
+          <Route exact path="/expense-history" component={ExpenseHistory} />
         </div>
       </Router>
     </Provider>,

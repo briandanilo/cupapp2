@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from "react-redux";
 import container from '../containers/all.js'
 //import callGoogleApi from '../actions/googleApi.js'
@@ -16,16 +17,15 @@ class Expenses extends React.Component {
   }
 
   render () {
-    //if (!this.props.expenses)
-    //  this.props.dispatch(callGoogleApi("cuppers"))
     return (
-      <main>
-        <h3>Expenses</h3>
+      <div>
+        <h3>New Expense</h3>
         <div className="list-group">
           {this.displayExpenses()}
         </div>
         <ExpenseForm />
-      </main>
+        <Link to="/expense-history">See All Expenses</Link>
+      </div>
     );
   }
 }

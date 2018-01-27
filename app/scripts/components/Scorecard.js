@@ -13,34 +13,20 @@ class Scorecard extends React.Component {
 
   renderScore(captain){
     if (captain == 'Red')
-      return <div>{this.props.scorecard[0]}</div>
+      return <div>Red Team: {this.props.scorecard[0]}</div>
     else if (captain == 'Blue')
-      return <div>{this.props.scorecard[1]}</div>
+      return <div>Blue Team: {this.props.scorecard[1]}</div>
 
   }
 
   render () {
     if (!this.props.scorecard) {
-      this.props.dispatch(callGoogleApi("Points"))
+      this.props.dispatch(callGoogleApi("Super Bowl"))
       return <div>Waiting for scorecard data...</div>
     } else
-    return (<div>
-      <div className="panel panel-default scorecard">
-        <div className="panel-heading">
-          <h3 className="panel-title">Red Team</h3>
-        </div>
-        <div className="panel-body">
+    return (<div><h3>Scorecard</h3>
           {this.renderScore("Red")}
-        </div>
-      </div>
-      <div className="panel panel-default scorecard">
-        <div className="panel-heading">
-          <h3 className="panel-title">Blue Team</h3>
-        </div>
-        <div className="panel-body">
           {this.renderScore("Blue")}
-        </div>
-      </div>
     </div>);
   }
 }

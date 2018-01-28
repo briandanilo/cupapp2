@@ -8,21 +8,10 @@ import ExpenseForm from './ExpenseForm.js'
 class Expenses extends React.Component {
 
 
-  displayExpenses(){
-    if (this.props.expenses)
-    return this.props.expenses.map((i)=>{
-      console.log(" i ",i[0])
-      return <a href="#" className="list-group-item">{i[0]}</a>
-    })
-  }
-
   render () {
     return (
-      <div>
-        <h3>New Expense</h3>
-        <div className="list-group">
-          {this.displayExpenses()}
-        </div>
+      <div className="ExpensesContainer Component">
+        <h3>Expenses</h3>
         <ExpenseForm />
         <Link to="/expense-history">See All Expenses</Link>
       </div>

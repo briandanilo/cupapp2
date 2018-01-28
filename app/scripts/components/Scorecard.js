@@ -24,9 +24,8 @@ class Scorecard extends React.Component {
       this.props.dispatch(callGoogleApi("Super Bowl"))
       return <div>Waiting for scorecard data...</div>
     } else
-    return (<div><h3>Scorecard</h3>
-          {this.renderScore("Red")}
-          {this.renderScore("Blue")}
+    return (<div className="ScorecardContainer Component"><h3>Scorecard</h3>
+      <p>Red Team: {this.props.scorecard[0]} &nbsp;&nbsp;&nbsp;&nbsp; Blue Team: {this.props.scorecard[1]}</p>
     </div>);
   }
 }

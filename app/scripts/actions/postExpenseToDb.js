@@ -17,8 +17,12 @@ export default function postExpense (expense) {
 
     return $.ajax(settings).then((d,s,x)=>{
       console.log("dsx ",d,x,s)
-      //dispatch(sendEmail(bet))
-      //dispatch( { type: "CLOSE_BETSLIP" })
+      if (s!="success")
+        alert("error ",s)
+      else if (s=="success"){
+        alert("successfully posted expense")
+        dispatch( { type: "SUCCESSFUL_EXPENSE", data: d })
+      }
     })
 
     // .then(function (data,err,x) {

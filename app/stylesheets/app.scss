@@ -28,3 +28,34 @@ html {
 .scorecard.right {
   //margin-left: 20px;
 }
+
+.Component {
+  text-align: center;
+  background: #e6f0ff;
+  padding:2px;
+}
+
+h3 {
+  margin: 0px;
+  background: #cce0ff;
+  height: 40px;
+  line-height: 40px;
+}
+
+p {
+  margin: 0px;
+}
+
+.expense-form-container {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.submit-btn {
+  display: block;
+  width: 34%;
+  margin-left: 33%;
+  margin-right: 33%;
+  margin-top:2px;
+  margin-bottom:2px;
+}

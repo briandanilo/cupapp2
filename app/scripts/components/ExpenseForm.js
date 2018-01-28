@@ -26,7 +26,6 @@ class ExpenseForm extends React.Component {
       if (route) {
         console.log("we got a route!")
       }
-      //this.setState({user:route})
     }
 
     handleChangeAmount(e) {
@@ -40,28 +39,35 @@ class ExpenseForm extends React.Component {
     }
 
     handleSubmit(e) {
-      if (this.state.amount && this.state.user && this.state.description && this.state.postTime)
+      if (this.state.amount && this.state.user && this.state.description && this.state.postTime){
         this.props.dispatch(postExpenseToDb(this.state))
+        this.setState({
+          amount: '',
+          description: '',
+          user:'',
+          postTime: Date.now()
+        })
+      }
       else
         alert("You're missing either a name, amount, or description")
       e.preventDefault();
     }
 
     render(props) {
-      return (
+      return (<div className="expense-form-container">
         <form onSubmit={this.handleSubmit}>
           <label>
-            User: <input type="text" value={this.state.user} onChange={this.handleChangeUser} />
+            <input className="expense-form" type="text" placeholder=" Your Name" value={this.state.user} onChange={this.handleChangeUser} />
           </label><br/>
           <label>
-            $$$$: <input type="number" placeholder=" Amount Spent" value={this.state.amount} onChange={this.handleChangeAmount} />
+            <input className="expense-form"  type="number" placeholder=" Amount Spent" value={this.state.amount} onChange={this.handleChangeAmount} />
           </label><br/>
           <label>
-            For:  <input type="text" placeholder=" Activity Enjoyed" value={this.state.description} onChange={this.handleChangeDescription} />
-          </label><br/><br/>
-          <input type="submit" value="Submit" />
+            <input className="expense-form"  type="text" placeholder=" Activity Enjoyed" value={this.state.description} onChange={this.handleChangeDescription} />
+          </label>
         </form>
-      );
+        <button className="btn btn-default submit-btn" onClick={this.handleSubmit}>Submit</button>
+      </div>);
     }
 }
 export default connect(container.allState)(ExpenseForm)

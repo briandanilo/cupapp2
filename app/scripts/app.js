@@ -8,6 +8,7 @@ import Transfer from "./components/Transfer.js";
 import Scorecard from "./components/Scorecard.js";
 import Expenses from "./components/Expenses.js";
 import ExpenseHistory from "./components/ExpenseHistory.js";
+import Jeopardy from "./components/Jeopardy.js";
 
 const Nav = () => (
   <ul className="nav nav-pills nav-justified">
@@ -23,6 +24,7 @@ export default function app() {
         <div>
           <Route exact path="/" component={AppRoot} />
           <Route exact path="/expense-history" component={ExpenseHistory} />
+          <Route exact path="/jeopardy" component={Jeopardy} />
         </div>
       </Router>
     </Provider>,

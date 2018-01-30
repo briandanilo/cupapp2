@@ -25,25 +25,12 @@ class Tools extends React.Component {
     (Math.random() > .5) ? alert("heads") : alert("tails")
   }
 
-  jeopardy() {
-  return fetch('http://jservice.io/api/random')
-    .then((response) => response.json())
-    .then((resJson) => {
-      console.log(resJson)
-      alert(resJson[0].question)
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
-
-
   render () {
     return (<div className="ToolsContainer Component">
       <h3>Tools</h3>
-        <button className="btn btn-default tools-btn" onClick={this.jeopardy}>Jeopardy</button>
         <button className="btn btn-default tools-btn" onClick={this.cupTrivia}>Cup Trivia</button>
         <button className="btn btn-default tools-btn" onClick={this.coinflip}>Coinflip</button>
+        <Link className="btn btn-default tools-btn" to="/jeopardy">Jeopardy</Link>
   </div>)
   }
 }

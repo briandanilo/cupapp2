@@ -13,8 +13,11 @@ class Tools extends React.Component {
   cupTrivia(){
     var triviaArray = [
       "winter is the coldest season",
+      "the winter cup email thread reached 204 emails before the draft",
+      "baron",
       "coupe is french for 'cup'",
-      "richard nixon died in the shower"
+      "richard nixon freed china",
+      "curtis browning",
     ]
     var rand = Math.floor(Math.random()*triviaArray.length)
     fetch('http://jservice.io/api/random')

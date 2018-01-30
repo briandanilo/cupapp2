@@ -41,9 +41,9 @@ class Tools extends React.Component {
   render () {
     return (<div className="ToolsContainer Component">
       <h3>Tools</h3>
-    <button className="cupTriviaBtn" onClick={this.jeopardy}>Jeopardy</button>
-    <button className="cupTriviaBtn" onClick={this.cupTrivia}>Cup Trivia</button>
-    <button className="cupTriviaBtn" onClick={this.coinflip}>Coinflip</button>
+        <button className="btn btn-default tools-btn" onClick={this.jeopardy}>Jeopardy</button>
+        <button className="btn btn-default tools-btn" onClick={this.cupTrivia}>Cup Trivia</button>
+        <button className="btn btn-default tools-btn" onClick={this.coinflip}>Coinflip</button>
   </div>)
   }
 }

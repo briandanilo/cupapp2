@@ -55,7 +55,7 @@ class ChipHistory extends React.Component {
 
     return (<div>
         <Link to="/">Back to Homepage</Link>
-        <h3>Chip Bet Totals</h3>
+        <h3>Chip Counts</h3>
         {this.renderTeamTotals()}
         {this.renderCupperTotals()}
         <h3>Past Bets</h3>

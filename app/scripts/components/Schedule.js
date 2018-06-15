@@ -22,18 +22,20 @@ class Schedule extends React.Component {
   render(props) {
     return (<div className="ScheduleContainer Component">
         <h3>Schedule</h3>
-        <h4>Thursday</h4>
-        <p>9pm - Drinks/Draft at Terminal Bar</p>
         <h4>Friday</h4>
-        <p>7pm - Dinner in Winter Park rental house</p>
-        <p>9pm - Team Game Event</p>
+        <p>Arrive at 609 Sunnyside Ave, Park City, UT</p>
         <h4>Saturday</h4>
-        <p>11am - Costume ski race</p>
-        <p>12pm - Tailgate Lunch in Utah Junction Parking Lot </p>
-        <p>2pm - UVA at Syracuse (ESPN3)</p>
-        <p>7pm - Dinner at Denos</p>
+        <p>8:30am - Golf at Canyons Club</p>
+        <p>Evening - poker, chip bets, merriment</p>
         <h4>Sunday</h4>
-        <p>4pm - Scavenger Hunt ends, Superbowl begins</p>
+        <p>12:30pm - Golf at Park City Golf Course</p>
+        <p>Evening - Bowling at Jupiter Bowl </p>
+        <h4>Monday</h4>
+        <p>12:30pm - Axe throwing in SLC</p>
+        <p>4pm - Top Golf</p>
+        <p>8pm - Trivia at Prohibition Bar</p>
+        <h4>Tuesday</h4>
+        <p>11am - Golf at Park City Golf Course</p>
       </div>)
   }
 

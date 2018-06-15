@@ -55,7 +55,6 @@ class ExpenseForm extends React.Component {
 
     render(props) {
       return (<div className="expense-form-container">
-        <form onSubmit={this.handleSubmit}>
           <label>
             <input className="expense-form" type="text" placeholder=" Your Name" value={this.state.user} onChange={this.handleChangeUser} />
           </label><br/>
@@ -65,7 +64,6 @@ class ExpenseForm extends React.Component {
           <label>
             <input className="expense-form"  type="text" placeholder=" Activity Enjoyed" value={this.state.description} onChange={this.handleChangeDescription} />
           </label>
-        </form>
         <button className="btn btn-default submit-btn" onClick={this.handleSubmit}>Submit</button>
       </div>);
     }

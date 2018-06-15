@@ -5,7 +5,7 @@ export default function readExpenseHistory (expense) {
     dispatch( { type: "STARTING_DB_CALL" });
 
     var BASE_URL = 'https://friendlywager.herokuapp.com/read/'
-    var DB_NAME = 'cupdemo'
+    var DB_NAME = 'cupExpenses'
     var URL = BASE_URL + DB_NAME
 
     let settings = {

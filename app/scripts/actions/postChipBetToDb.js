@@ -1,3 +1,4 @@
+import readChipBetHistory from './readChipBetHistory'
 export default function postExpense (expense) {
 
   return function (dispatch) {
@@ -5,7 +6,7 @@ export default function postExpense (expense) {
     dispatch( { type: "STARTING_DB_CALL" });
 
     var BASE_URL = 'https://friendlywager.herokuapp.com/write/'
-    var DB_NAME = 'cupExpenses'
+    var DB_NAME = 'cupBets'
     var URL = BASE_URL + DB_NAME
 
     let settings = {
@@ -20,8 +21,8 @@ export default function postExpense (expense) {
       if (s!="success")
         alert("error ",s)
       else if (s=="success"){
-        alert("successfully posted expense")
-        dispatch( { type: "SUCCESSFUL_EXPENSE", data: d })
+        alert("successfully posted chip bet")
+        dispatch(readChipBetHistory())
       }
     })
 

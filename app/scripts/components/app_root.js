@@ -8,15 +8,20 @@ import Schedule from "./Schedule.js";
 import ExpenseHistory from "./ExpenseHistory.js";
 import Tools from "./Tools.js";
 import readExpenseHistory from '../actions/readExpenseHistory'
+import readChipBetHistory from '../actions/readChipBetHistory'
 import container from '../containers/all.js'
 
 class AppRoot extends React.Component {
 
-
+  componentWillMount(){
+    this.props.dispatch(readChipBetHistory())
+  }
+  
   render() {
     return (
       <div>
         <Scorecard />
+        <Transfer />
         <Expenses />
         <Schedule />
         <Tools />

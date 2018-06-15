@@ -13,12 +13,10 @@ export default function callGoogleApi (sheetName) {
 
     return  $.ajax({
       url: url,
-      headers: {
-      },
-      data: {
-      }
+      headers: {},
+      data: {}
     }).then(function (data,err,x) {
-      console.log("data : ",data.values)
+      //console.log("data : ",data.values)
       if (err == "success")
         dispatch( { type: "SUCCESSFUL_GOOGLE_API_CALL", sheet: sheetName, data: data.values })
       else

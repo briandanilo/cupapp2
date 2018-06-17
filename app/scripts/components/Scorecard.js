@@ -13,13 +13,15 @@ class Scorecard extends React.Component {
 
   render () {
     if (!this.props.scorecard) {
-      this.props.dispatch(callGoogleApi("Super Bowl"))
+      this.props.dispatch(callGoogleApi("Scorecard"))
       return <div>Waiting for scorecard data...</div>
     } else
     return (<div className="ScorecardContainer Component"><h3>Scorecard</h3>
-      <p className="scorecard-score">Red Team: {this.props.scorecard[0]} &nbsp;&nbsp;&nbsp;&nbsp; Blue Team: {this.props.scorecard[1]}</p>
+      <p className="scorecard-score">Team Fowler: {this.props.scorecard.TF}  --  Team Barnes: {this.props.scorecard.TB}</p>
     </div>);
   }
 }
+
+//Red Team: {this.props.scorecard[0]} &nbsp;&nbsp;&nbsp;&nbsp; Blue Team: {this.props.scorecard[1]}
 
 export default connect(container.allState)(Scorecard)

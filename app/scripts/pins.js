@@ -4,7 +4,7 @@ export default {
   "danilo":111,
   "joe":277,
   "wu":678,
-  "jay":111,
+  "jay":999,
   "adam":264,
   "jim":798,
   "barnes":876,

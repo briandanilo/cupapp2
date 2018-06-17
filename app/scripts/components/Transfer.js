@@ -18,7 +18,7 @@ class Transfer extends React.Component {
       amount:"",
       postTime:""
     }
-    this.cuppers = ["fowler","kahl","danilo","joe","wu","jay","adam","jim","barnes","rick","eph","ben","dave","baron","pete","spike"]
+    this.cuppers = ["fowler","kahl","danilo","joe","wu","jay","adam","jim","barnes","rick","eph","ben","dave","baron","spike","pete"]
     this.getKeyByValue = this.getKeyByValue.bind(this);
     this.handleSubmitTransfer = this.handleSubmitTransfer.bind(this);
     this.handleChangeTransferee = this.handleChangeTransferee.bind(this);
@@ -38,7 +38,7 @@ class Transfer extends React.Component {
       return (<div><label><input className="transfer-form"  type="number" placeholder=" Your Pin " value={this.state.user} onChange={this.handleChangeUser} />
         </label><br/></div>)
   }
-  
+
   getKeyByValue(object, value) {
     return Object.keys(object).find(key => object[key] == value);
   }
@@ -75,7 +75,7 @@ class Transfer extends React.Component {
     if (this.props.chipCounts)
       if (this.props.chipCounts[this.state.verifiedUser].chipCount >= this.state.amount)
         sufficientBalance = true
-    if (sufficientBalance && this.state.verifiedUser && this.state.transferee && this.state.amount && this.state.user){
+    if (sufficientBalance && this.state.verifiedUser && this.state.transferee && (this.state.amount>0) && this.state.user){
       this.props.dispatch(postChipBetToDb(this.state))
       this.setState({
         user:"",
@@ -86,7 +86,7 @@ class Transfer extends React.Component {
       })
     }
     else
-      alert("You're missing either a correct pin, the transferee, an amount, or sufficient chips")
+      alert("You're doing something incorrect or shady (eph)")
     e.preventDefault();
   }
 

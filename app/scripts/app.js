@@ -29,6 +29,7 @@ export default function app() {
           <Route exact path="/chip-history" component={ChipHistory} />
           <Route exact path="/jeopardy" component={Jeopardy} />
           <Route exact path="/cards" component={Cards} />
+          <Route path="/cards" component={Cards}/>
         </div>
       </Router>
     </Provider>,

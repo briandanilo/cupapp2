@@ -15,6 +15,11 @@ html {
     }
 }
 
+.CardBox {
+  width: 50%;
+  display: inline-block;
+}
+
 .active {
     font-weight: bold;
     background: 'blue';

@@ -34,6 +34,7 @@ class Tools extends React.Component {
         <button className="btn btn-default tools-btn" onClick={this.cupTrivia}>Cup Trivia</button>
         <button className="btn btn-default tools-btn" onClick={this.coinflip}>Coinflip</button>
         <Link className="btn btn-default tools-btn" to="/jeopardy">Jeopardy</Link>
+        <Link className="btn btn-default tools-btn" to="/cards">Cards</Link>
   </div>)
   }
 }

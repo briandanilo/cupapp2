@@ -7,7 +7,9 @@ var config = {
   devtool: "#source-map",
 
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    contentBase: './',
+    hot: true
   },
 
   entry: {
@@ -66,7 +68,8 @@ var config = {
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery"
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   externals: {
     cheerio: "window"

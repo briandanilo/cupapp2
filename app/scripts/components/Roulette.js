@@ -12,7 +12,8 @@ class Roulette extends React.Component {
       startAngle: 0,
       spinTime: 0,
       arc: Math.PI / (props.options.length / 2),
-    }
+      spinTimeExtra: 3000,
+    };
     this.spinTimer = null;
     this.handleOnClick = this.handleOnClick.bind(this);
     this.spin = this.spin.bind(this);
@@ -31,8 +32,8 @@ class Roulette extends React.Component {
   static defaultProps = {
     options:  ['Win 1', 'Lose 2', 'Win 2', 'Push', 'Lose 1'],
     baseSize: 150,
-    spinAngleStart: Math.random() * 10 + 10,
-    spinTimeTotal: Math.random() * 3 + 4 * 1000,
+    spinAngleStart: Math.random() * 360,
+    spinTimeTotal: Math.random() * 1000 + 4 * 1000,
   };
 
   componentDidMount() {
@@ -119,12 +120,15 @@ class Roulette extends React.Component {
 
   spin() {
     this.spinTimer = null;
-    this.setState({ spinTime: 0}, () => this.rotate());
+    this.setState({ spinTime: 0, spinTimeTotal: Math.random() * 1000 + 4 * 1000}, () => this.rotate());
   }
 
   rotate(){
     const { spinAngleStart, spinTimeTotal } = this.props;
-    if(this.state.spinTime > 2800) {
+    // const { spinAngleStart } = this.props;
+    // let spinTimeTotal = 3000 + this.state.spinTimeExtra;
+    // console.log('spintime', this.state.spinTime, 'spin extra', this.state.spinTimeExtra);
+    if(this.state.spinTime > spinTimeTotal ) {
       clearTimeout(this.spinTimer);
       this.stopRotateWheel();
     } else {
@@ -153,7 +157,7 @@ class Roulette extends React.Component {
     ctx.save();
     ctx.font = 'bold 20px Helvetica, Arial';
     const text = options[index];
-    ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize);
+    ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize + 10);
     ctx.restore();
     this.props.onComplete(text);
   }

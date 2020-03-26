@@ -24,7 +24,7 @@ class Jeopardy extends React.Component {
       return (<div className="jeopardy-clue-container">
         <h4>{this.state.value}</h4>
         <h5>{this.state.question}</h5>
-        <button className="btn btn-default tools-btn" onClick={this.renderAnswer}>ShowAnswer</button>
+        <button className="btn btn-default tools-btn" onClick={this.renderAnswer}>Show Answer</button>
       </div>)
     else if (this.state.question && this.state.showAnswer)
       return (<div className="jeopardy-clue-container">

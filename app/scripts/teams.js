@@ -1,4 +1,5 @@
-var STARTING_CHIP_COUNT = 20
+let STARTING_CHIP_COUNT = 20;
+
 export default {
   "fowler":{team:"Team Fowler",chipCount:STARTING_CHIP_COUNT},
   "kahl":{team:"Team Fowler",chipCount:STARTING_CHIP_COUNT},

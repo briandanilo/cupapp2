@@ -12,6 +12,7 @@ import Jeopardy from "./components/Jeopardy.js";
 import ChipHistory from "./components/ChipHistory.js";
 import Cards from "./components/Cards.js";
 import ExampleRoulette from "./components/Roulette";
+import RoulettePicker from "./components/RoulettePicker";
 
 const Nav = () => (
   <ul className="nav nav-pills nav-justified">
@@ -30,7 +31,7 @@ export default function app() {
           <Route exact path="/chip-history" component={ChipHistory} />
           <Route exact path="/jeopardy" component={Jeopardy} />
           <Route path="/cards" component={Cards} />
-          <Route path="/roulette" component={ExampleRoulette} />
+          <Route path="/roulette" component={RoulettePicker} />
         </div>
       </Router>
     </Provider>,

@@ -1,70 +1,69 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react"
+import { Link } from "react-router-dom"
 import { connect } from "react-redux";
-import container from '../containers/all.js'
-import { Hand, Card, CardBack } from 'react-deck-o-cards';
-import fullDeck from './fullDeckOfCards.js'
+import container from "../containers/all.js"
+import fullDeck from "./fullDeckOfCards.js"
+import Deck from "card-deck";
+import { StartingDeck } from "../models/deck";
+import HandDisplay from "./HandDisplay";
 
 class Cards extends React.Component {
 
   constructor(props) {
-      super(props);
-      this.getCard = this.getCard.bind(this);
-      this.pickCardFromDeck = this.pickCardFromDeck.bind(this);
-      this.state = {
-        deck: fullDeck,
-        player1cards: [
-          { }
-        ],
-        player2cards: [
-          { }
-        ],
-        player3cards: [
-          { }
-        ],
-        player4cards: [
-          { }
-        ],
-      };
+    super(props);
+    this.state = {
+      deck: fullDeck,
+      player1cards: [],
+      player2cards: [],
+      player3cards: [],
+      player4cards: [],
+      someDeck: new Deck(StartingDeck).shuffle(),
+      removeCards: false,
+    };
   }
 
-  getCard(e){
+  toggleRemoveCards = () => {
+    this.resetHands();
+    this.setState( {removeCards: !this.state.removeCards});
+  };
+
+  resetHands = () => {
+    this.setState({
+      deck: fullDeck,
+      player1cards: [],
+      player2cards: [],
+      player3cards: [],
+      player4cards: [],
+      someDeck: new Deck(StartingDeck).shuffle(),
+    });
+  };
+
+  getCard = e => {
+    if (this.state.someDeck.remaining() < 1) {
+      // TODO maybe notify that there are no cards left
+      return;
+    }
+    let drawnCard = this.state.someDeck.draw();
     switch (e.target.value) {
       case "player1":
-        //var randomElement = Math.floor(Math.random() * currentDeck.length);
-        var currentCards = this.state.player1cards
-        currentCards.push(this.pickCardFromDeck())
-        this.setState({player1cards: currentCards})
-        break;
+        this.setState({ player1cards: [...this.state.player1cards, drawnCard] });
         break;
       case "player2":
-        var currentCards = this.state.player2cards
-        currentCards.push(this.pickCardFromDeck())
-        this.setState({player2cards: currentCards})
+        this.setState({ player2cards: [...this.state.player2cards, drawnCard] });
         break;
       case "player3":
-        var currentCards = this.state.player3cards
-        currentCards.push(this.pickCardFromDeck())
-        this.setState({player3cards: currentCards})
+        this.setState({ player3cards: [...this.state.player3cards, drawnCard] });
         break;
       case "player4":
-        var currentCards = this.state.player4cards
-        currentCards.push(this.pickCardFromDeck())
-        this.setState({player4cards: currentCards})
+        this.setState({ player4cards: [...this.state.player4cards, drawnCard] });
         break;
     }
-  }
+    if(!this.state.removeCards){
+      this.state.someDeck.addRandom(drawnCard);
+    }
+  };
 
-  pickCardFromDeck(){
-    var rank = Math.ceil(Math.random() * Math.ceil(13))
-    var suit = Math.floor(Math.random() * Math.floor(3))
-    console.log("rank: ",rank," suit: ",suit)
-    return { rank:rank, suit:suit }
-  }
-
-
-  render () {
-    console.log("current state: ",this.state)
+  render() {
     return (<div><Link to="/">Back to Homepage</Link>
       <div className="Component">
         <h1>Cards</h1>
@@ -74,21 +73,27 @@ class Cards extends React.Component {
         <button className="btn btn-default tools-btn" value="player4" onClick={this.getCard}>Deal Player 4</button>
       </div>
       <div className="Component">
+        <button className="btn btn-default tools-btn" value="player4" onClick={this.resetHands}>Reset</button>
+        <button className="btn btn-default tools-btn" value="player4" onClick={this.toggleRemoveCards}>
+          {this.state.removeCards && "Remove Cards" || "Don't Remove Cards"}
+        </button>
+      </div>
+      <div className="Component">
         <p>Player 1:</p>
-        <div className="CardBox">
-          <Hand cards={this.state.player1cards} hidden={false}  />
+        <div key="player1hand" style={styles.handWrapper}>
+          <HandDisplay hand={this.state.player1cards} />
         </div>
         <p>Player 2:</p>
-        <div className="CardBox">
-          <Hand cards={this.state.player2cards} hidden={false}  />
+        <div key="player2hand" style={styles.handWrapper}>
+          <HandDisplay hand={this.state.player2cards} />
         </div>
         <p>Player 3:</p>
-        <div className="CardBox">
-          <Hand cards={this.state.player3cards} hidden={false}  />
+        <div key="player3hand" style={styles.handWrapper}>
+          <HandDisplay hand={this.state.player3cards} />
         </div>
         <p>Player 4:</p>
-        <div className="CardBox">
-          <Hand cards={this.state.player4cards} hidden={false}  />
+        <div key="player4hand" style={styles.handWrapper}>
+          <HandDisplay hand={this.state.player4cards} />
         </div>
       </div>
     </div>);
@@ -96,3 +101,12 @@ class Cards extends React.Component {
 }
 
 export default connect(container.allState)(Cards)
+
+const styles = {
+  handWrapper: {
+    display: "flex",
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center"
+  }
+};

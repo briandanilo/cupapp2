@@ -9,7 +9,7 @@ class Roulette extends React.Component {
     super(props);
     this.state = {
       spinAngleStart: 0,
-      startAngle: 0,
+      startAngle: Math.random() * 360,
       spinTime: 0,
       arc: Math.PI / (props.options.length / 2),
       spinTimeExtra: 3000,
@@ -31,6 +31,7 @@ class Roulette extends React.Component {
 
   static defaultProps = {
     options:  ['Win 1', 'Lose 2', 'Win 2', 'Push', 'Lose 1'],
+    // options:  ['Win 1', 'Lose 2', 'Win 2', 'Push', 'Lose 1', 'Win 1', 'Lose 2', 'Win 2', 'Push', 'Lose 1', 'Win 1', 'Lose 2', 'Win 2', 'Push', 'Lose 1'],
     baseSize: 150,
     spinAngleStart: Math.random() * 360,
     spinTimeTotal: Math.random() * 1000 + 4 * 1000,
@@ -65,7 +66,6 @@ class Roulette extends React.Component {
   drawRouletteWheel() {
     const { options, baseSize } = this.props;
     let { startAngle, arc } = this.state;
-
 
     // const spinTimeout = null;
     // const spinTime = 0;

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom'
 
 import '../../stylesheets/Roulette.scss';
 
@@ -175,7 +176,8 @@ class Roulette extends React.Component {
   render() {
     const { baseSize } = this.props;
 
-    return (
+    return (<div>
+      <div><Link to="/roulette">Back to Roulette</Link></div>
       <div className="roulette">
         <div className="roulette-container">
           <canvas ref="canvas" width={baseSize * 2} height={baseSize * 2} className="roulette-canvas"></canvas>
@@ -184,7 +186,7 @@ class Roulette extends React.Component {
           <input type="button" value="spin" onClick={this.handleOnClick} className="button" id="spin" />
         </div>
       </div>
-    );
+    </div>);
   }
 }
 

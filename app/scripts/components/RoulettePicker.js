@@ -1,5 +1,6 @@
 import React from "react";
 import Roulette from "./Roulette";
+import { Link } from 'react-router-dom'
 
 class RoulettePicker extends React.Component {
   constructor(props) {
@@ -32,13 +33,14 @@ class RoulettePicker extends React.Component {
         );
     }
 
-    return (
+    return (<div>
+      <div><Link to="/">Back to Homepage</Link></div>
       <div>
         <button className="btn btn-default tools-btn" value="1" onClick={this.pickGame}>Easy Does It</button>
         <button className="btn btn-default tools-btn" value="2" onClick={this.pickGame}>Baron Special</button>
         <button className="btn btn-default tools-btn" value="3" onClick={this.pickGame}>As the World Turns</button>
       </div>
-    );
+    </div>);
 
   }
 }

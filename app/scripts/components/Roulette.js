@@ -35,7 +35,7 @@ class Roulette extends React.Component {
     // options:  ['Win 1', 'Lose 2', 'Win 2', 'Push', 'Lose 1', 'Win 1', 'Lose 2', 'Win 2', 'Push', 'Lose 1', 'Win 1', 'Lose 2', 'Win 2', 'Push', 'Lose 1'],
     baseSize: 150,
     spinAngleStart: Math.random() * 360,
-    spinTimeTotal: Math.random() * 1000 + 4 * 1000,
+    spinTimeTotal: Math.random() * 1000,
   };
 
   componentDidMount() {
@@ -77,6 +77,8 @@ class Roulette extends React.Component {
     // const spinTimeTotal = 0;
 
     let ctx;
+
+    console.log("Spin Time", this.state.spinTime, this.state.spinTimeTotal);
 
     const canvas = this.refs.canvas;
     if (canvas.getContext) {
@@ -125,7 +127,7 @@ class Roulette extends React.Component {
 
   spin() {
     this.spinTimer = null;
-    this.setState({ spinTime: 0, spinTimeTotal: Math.random() * 1000 + 4 * 1000}, () => this.rotate());
+    this.setState({ spinTime: 0, spinTimeTotal: Math.random() * 360 + 360*2}, () => this.rotate());
   }
 
   rotate(){
@@ -133,11 +135,17 @@ class Roulette extends React.Component {
     // const { spinAngleStart } = this.props;
     // let spinTimeTotal = 3000 + this.state.spinTimeExtra;
     // console.log('spintime', this.state.spinTime, 'spin extra', this.state.spinTimeExtra);
-    if(this.state.spinTime > spinTimeTotal ) {
+    if(this.state.spinTime > this.state.spinTimeTotal ) {
+      console.log("Stopping", this.state.spinTime, this.state.spinTimeTotal);
       clearTimeout(this.spinTimer);
       this.stopRotateWheel();
     } else {
-      const spinAngle = spinAngleStart - this.easeOut(this.state.spinTime, 0, spinAngleStart, spinTimeTotal);
+      const spinAngle = spinAngleStart - this.easeOutBounce(this.state.spinTime, 0, spinAngleStart, this.state.spinTimeTotal);
+      // if( this.spinTimeTotal - this.state.spinTime > 500) {
+      //   const spinAngle = spinAngleStart - this.easeOut(this.state.spinTime, 0, spinAngleStart, this.state.spinTimeTotal);
+      // } else {
+      //   const spinAngle = spinAngleStart - this.easeOut(this.state.spinTime, 0, spinAngleStart, this.state.spinTimeTotal);
+      // }
       this.setState({
         startAngle: this.state.startAngle + spinAngle * Math.PI / 180,
         spinTime: this.state.spinTime + 30,
@@ -171,6 +179,39 @@ class Roulette extends React.Component {
     const ts = (t/=d)*t;
     const tc = ts*t;
     return b+c*(tc + -3*ts + 3*t);
+  }
+
+  easeOutQuart(t, b, c, d){
+    return -c * ((t=t/d-1)*t*t*t - 1) + b;
+  }
+
+  easeOutExpo(t, b, c, d) {
+    return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+  }
+
+
+  easeOutElastic(t, b, c, d) {
+    var s=1.70158;var p=0;var a=c;
+    if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+    if (a < Math.abs(c)) { a=c; var s=p/4; }
+    else var s = p/(2*Math.PI) * Math.asin (c/a);
+    return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
+  }
+
+  easeOutBounce(t, b, c, d) {
+    if ((t/=d) < (1/2.75)) {
+      return c*(7.5625*t*t) + b;
+    } else if (t < (2/2.75)) {
+      return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+    } else if (t < (2.5/2.75)) {
+      return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+    } else {
+      return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+    }
+  }
+
+  easeOutCirc(t, b, c, d) {
+    return c * Math.sqrt(1 - (t=t/d-1)*t) + b;
   }
 
   handleOnClick() {

@@ -1,4 +1,4 @@
 #!/bin/bash
-npm run build
+#npm run build
 cd dist
-surge
+surge --domain cup.center

@@ -20,24 +20,24 @@ class RoulettePicker extends React.Component {
   };
 
   resetState(){
-    this.setState(initialState)
+    this.setState(this.initialState)
   }
 
   render() {
     switch (this.state.boardPicked) {
       case 1:
         return (<div>
-          <Link onClick={this.resetState} to="/roulette">Back to Roulette Options</Link>
+          <Link to="/roulette" onClick={this.resetState}>Back to Roulette Options</Link>
           <Roulette /></div>
         );
       case 2:
         return (<div>
-          <Link onClick={this.resetState} to="/roulette">Back to Roulette Options</Link>
+          <Link to="/roulette" onClick={this.resetState}>Back to Roulette Options</Link>
           <Roulette options={["Win 5", "Lose 1", "Lose 1", "Lose 2", "Lose 2", "Lose 1", "Win 5", "Lose 3"]} /></div>
         );
       case 3:
         return (<div>
-          <Link onClick={this.resetState} to="/roulette">Back to Roulette Options</Link>
+          <Link to="/roulette" onClick={this.resetState} to="/roulette">Back to Roulette Options</Link>
           <Roulette options={["Win 3", "Lose 3", "Win 2", "Lose 2", "Win 1", "Lose 1", "Win 2", "Lose 2"]} /></div>
         );
     }

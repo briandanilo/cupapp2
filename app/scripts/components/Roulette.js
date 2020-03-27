@@ -42,6 +42,10 @@ class Roulette extends React.Component {
     this.drawRouletteWheel();
   }
 
+  resetState() {
+    console.log("hi")
+  }
+
   byte2Hex(n) {
     const nybHexString = '0123456789ABCDEF';
     return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
@@ -160,7 +164,7 @@ class Roulette extends React.Component {
     const text = options[index];
     ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize + 10);
     ctx.restore();
-    this.props.onComplete(text);
+    //this.props.onComplete(text);
   }
 
   easeOut(t, b, c, d) {
@@ -176,8 +180,8 @@ class Roulette extends React.Component {
   render() {
     const { baseSize } = this.props;
 
-    return (<div>
-      <div><Link to="/roulette">Back to Roulette</Link></div>
+    return (  <div>
+      <div>
       <div className="roulette">
         <div className="roulette-container">
           <canvas ref="canvas" width={baseSize * 2} height={baseSize * 2} className="roulette-canvas"></canvas>
@@ -186,7 +190,7 @@ class Roulette extends React.Component {
           <input type="button" value="spin" onClick={this.handleOnClick} className="button" id="spin" />
         </div>
       </div>
-    </div>);
+    </div></div>);
   }
 }
 

@@ -127,7 +127,7 @@ class Roulette extends React.Component {
 
   spin() {
     this.spinTimer = null;
-    this.setState({ spinTime: 0, spinTimeTotal: Math.random() * 360 + 360*2}, () => this.rotate());
+    this.setState({ spinTime: 0, spinTimeTotal: Math.random() * 360 + 360*3}, () => this.rotate());
   }
 
   rotate(){

@@ -14,7 +14,7 @@ import Cards from "./components/Cards.js";
 import ExampleRoulette from "./components/Roulette";
 import RoulettePicker from "./components/RoulettePicker";
 import Blackjack from "./components/Blackjack";
-import Youtube from "./components/Youtube";
+import Sportsbook from "./components/Sportsbook";
 
 const Nav = () => (
   <ul className="nav nav-pills nav-justified">
@@ -35,7 +35,7 @@ export default function app() {
           <Route path="/cards" component={Cards} />
           <Route path="/roulette" component={RoulettePicker} />
           <Route path="/blackjack" component={Blackjack} />
-          <Route path="/youtube" component={Youtube} />
+          <Route path="/sportsbook" component={Sportsbook} />
         </div>
       </Router>
     </Provider>,

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import container from '../containers/all.js'
 import YouTube from 'react-youtube';
 
-class Youtube extends React.Component {
+class Sportsbook extends React.Component {
 
   constructor(props) {
       super(props);
@@ -44,4 +44,4 @@ class Youtube extends React.Component {
 
 
 }
-export default connect(container.allState)(Youtube)
+export default connect(container.allState)(Sportsbook)

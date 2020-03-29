@@ -37,7 +37,7 @@ class Tools extends React.Component {
         <Link className="btn btn-default tools-btn" to="/cards">Cards</Link>
         <Link className="btn btn-default tools-btn" to="/roulette">Roulette</Link>
         <Link className="btn btn-default tools-btn" to="/blackjack">Blackjack</Link>
-        <Link className="btn btn-default tools-btn" to="/youtube">Youtube</Link>
+        <Link className="btn btn-default tools-btn" to="/sportsbook">Sportsbook</Link>
   </div>)
   }
 }

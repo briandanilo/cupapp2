@@ -114,7 +114,6 @@ class Blackjack extends React.Component {
         <p>Player</p>
           <div key="playerHand" style={styles.handWrapper}>
           {this.renderPlayerCards()}
-          {this.renderPlayerOptions()}
         </div>
         <div className = "Component">
           {this.renderOutcome()}

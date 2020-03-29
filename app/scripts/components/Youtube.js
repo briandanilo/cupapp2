@@ -8,7 +8,6 @@ class Youtube extends React.Component {
 
   constructor(props) {
       super(props);
-      this.assignBet = this.assignBet.bind(this);
   }
 
   assignBet () {

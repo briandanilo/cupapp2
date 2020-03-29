@@ -6,102 +6,118 @@ import Deck from "card-deck";
 import { StartingDeck } from "../models/deck";
 import HandDisplay from "./HandDisplay";
 
+const blackjack = require('engine-blackjack')
+const actions = blackjack.actions
+const Game = blackjack.Game
+export {blackjack, actions, Game}
+
 class Blackjack extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      dealerCards: [],
-      playerCards: [],
-      dealerTotal: 0,
-      playerTotal: 0,
-      someDeck: new Deck(StartingDeck).shuffle(),
-      removeCards: false,
-    };
-  }
-
-  toggleRemoveCards = () => {
-    this.resetHands();
-    this.setState( {removeCards: !this.state.removeCards});
-  };
-
-  resetHands = () => {
-    this.setState({
-      dealerCards: [],
-      playerCards: [],
-      someDeck: new Deck(StartingDeck).shuffle(),
-      removeCards: true,
-    });
-  };
-
-  deal = () => {
-    if (!this.state.dealerCards.length)
-    {
-      let dealer1 = this.state.someDeck.draw();
-      let dealer2 = this.state.someDeck.draw();
-      let player1 = this.state.someDeck.draw();
-      let player2 = this.state.someDeck.draw();
-      this.setState({ dealerCards: [...this.state.dealerCards, dealer1, dealer2] });
-      this.setState({ playerCards: [...this.state.playerCards, player1, player2] });
-    } else {
-      let player1 = this.state.someDeck.draw();
-      this.setState({ playerCards: [...this.state.playerCards, player1] });
+      currentGame: new Game(),
+      defaultBet: 10
     }
-  };
-
-  stand = () => {
-    this.resetHands()
   }
 
-  addStandButton = () => {
-    if (this.state.dealerCards.length)
-    return (
-      <button className="btn btn-default tools-btn" onClick={this.stand}>Stand
-      </button>)
+
+  buttonClick = (e) => {
+
+    switch (e.target.value) {
+      case "deal":
+        this.state.currentGame.dispatch(actions.deal())
+        this.setState({ currentGame: this.state.currentGame });
+        break
+      case "hit":
+        this.state.currentGame.dispatch(actions.hit({position:"right"}))
+        this.setState({ currentGame: this.state.currentGame });
+        break
+      case "stand":
+        this.state.currentGame.dispatch(actions.stand({position:"right"}))
+        this.setState({ currentGame: this.state.currentGame });
+        break
+      case "split":
+        this.state.currentGame.dispatch(actions.split({position:"right"}))
+        this.setState({ currentGame: this.state.currentGame });
+        break
+      case "double":
+        this.state.currentGame.dispatch(actions.split({position:"right"}))
+        this.setState({ currentGame: this.state.currentGame });
+        break
+      case "reset":
+        this.setState({currentGame: new Game()})
+        break
+    }
+
+    console.log("game state after button click: :",this.state.currentGame.getState())
+
+  }
+
+  renderPlayerCards(){
+    if (this.state.currentGame.state.handInfo.right.cards){
+      let handArray = this.state.currentGame.state.handInfo.right.cards
+      return handArray.map((i)=>{
+        return <p>{i.text},</p>
+      })
+    }
+  }
+
+  renderDealerCards(){
+    if (this.state.currentGame.state.dealerCards){
+      let handArray = this.state.currentGame.state.dealerCards
+      return handArray.map((i)=>{
+        return <p>{i.text},</p>
+      })
+    }
+  }
+
+  // renderPlayerOptions(){
+  //   if (this.state.currentGame.state.handInfo.right.availableActions){
+  //     let availableActions = this.state.currentGame.state.handInfo.right.availableActions
+  //     console.log("player available actions: ",availableActions)
+  //   }
+  // }
+
+  renderBetAmount(){
+    if (this.state.currentGame.state.initialBet)
+      return <p>Bet: {this.state.currentGame.state.initialBet}</p>
     else
-      return (<div></div>)
+      return <p>Bet: {this.state.defaultBet}</p>
   }
 
-  calcScore = (handArray) => {
-    let score = 0;
-    handArray.forEach((i)=>{
-      if (i.rank == 12)
-        score += 1
-      else if (i.rank > 7)
-        score += 10
-      else
-        score += i.rank+2
-    })
-    return score
-  }
-
-  dealerScore = () => {
-    let score = this.calcScore(this.state.dealerCards)
-    return score
-  }
-
-  playerScore = () => {
-    let score = this.calcScore(this.state.playerCards)
-    return score
+  renderOutcome(){
+    if (this.state.currentGame.state.stage =="done")
+      return <p>Game Over</p>
   }
 
   render() {
+
     return (<div><Link to="/">Back to Homepage</Link>
       <div className="Component">
         <h1>Blackjack</h1>
-        <button className="btn btn-default tools-btn" onClick={this.deal}>
-        {this.state.dealerCards.length && "Hit" || "Deal"}
-        </button>
-        {this.addStandButton()}
-    </div>
+        <button className="btn btn-default tools-btn" value="deal" onClick={this.buttonClick}>Deal</button>
+        <button className="btn btn-default tools-btn" value="hit" onClick={this.buttonClick}>Hit</button>
+        <button className="btn btn-default tools-btn" value="stand" onClick={this.buttonClick}>Stand</button>
+        <button className="btn btn-default tools-btn" value="double" onClick={this.buttonClick}>Double</button>
+        <button className="btn btn-default tools-btn" value="split" onClick={this.buttonClick}>Split</button>
+        <button className="btn btn-default tools-btn" value="reset" onClick={this.buttonClick}>Play Again</button>
+      </div>
+      <div className = "Component">
+        {this.renderBetAmount()}
+      </div>
       <div className="Component">
-        <p>Dealer ({this.dealerScore()})</p>
-        <div key="player1hand" style={styles.handWrapper}>
-          <HandDisplay hand={this.state.dealerCards} />
+        <p>Dealer</p>
+          <div key="dealerHand" style={styles.handWrapper}>
+          {this.renderDealerCards()}
         </div>
-        <p>Player ({this.playerScore()})</p>
-        <div key="player2hand" style={styles.handWrapper}>
-          <HandDisplay hand={this.state.playerCards} />
+        <p>Player</p>
+          <div key="playerHand" style={styles.handWrapper}>
+          {this.renderPlayerCards()}
+          {this.renderPlayerOptions()}
+        </div>
+        <div className = "Component">
+          {this.renderOutcome()}
         </div>
       </div>
     </div>);

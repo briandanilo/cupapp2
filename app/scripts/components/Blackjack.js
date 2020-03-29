@@ -13,6 +13,8 @@ class Blackjack extends React.Component {
     this.state = {
       dealerCards: [],
       playerCards: [],
+      dealerTotal: 0,
+      playerTotal: 0,
       someDeck: new Deck(StartingDeck).shuffle(),
       removeCards: false,
     };
@@ -60,6 +62,29 @@ class Blackjack extends React.Component {
       return (<div></div>)
   }
 
+  calcScore = (handArray) => {
+    let score = 0;
+    handArray.forEach((i)=>{
+      if (i.rank == 12)
+        score += 1
+      else if (i.rank > 7)
+        score += 10
+      else
+        score += i.rank+2
+    })
+    return score
+  }
+
+  dealerScore = () => {
+    let score = this.calcScore(this.state.dealerCards)
+    return score
+  }
+
+  playerScore = () => {
+    let score = this.calcScore(this.state.playerCards)
+    return score
+  }
+
   render() {
     return (<div><Link to="/">Back to Homepage</Link>
       <div className="Component">
@@ -70,11 +95,11 @@ class Blackjack extends React.Component {
         {this.addStandButton()}
     </div>
       <div className="Component">
-        <p>Dealer</p>
+        <p>Dealer ({this.dealerScore()})</p>
         <div key="player1hand" style={styles.handWrapper}>
           <HandDisplay hand={this.state.dealerCards} />
         </div>
-        <p>Player</p>
+        <p>Player ({this.playerScore()})</p>
         <div key="player2hand" style={styles.handWrapper}>
           <HandDisplay hand={this.state.playerCards} />
         </div>

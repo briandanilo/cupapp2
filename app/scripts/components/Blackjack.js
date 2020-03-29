@@ -2,7 +2,6 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux";
 import container from "../containers/all.js"
-import fullDeck from "./fullDeckOfCards.js"
 import Deck from "card-deck";
 import { StartingDeck } from "../models/deck";
 import HandDisplay from "./HandDisplay";
@@ -12,7 +11,6 @@ class Blackjack extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      deck: fullDeck,
       dealerCards: [],
       playerCards: [],
       someDeck: new Deck(StartingDeck).shuffle(),
@@ -27,7 +25,6 @@ class Blackjack extends React.Component {
 
   resetHands = () => {
     this.setState({
-      deck: fullDeck,
       dealerCards: [],
       playerCards: [],
       someDeck: new Deck(StartingDeck).shuffle(),

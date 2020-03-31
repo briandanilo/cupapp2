@@ -5,24 +5,25 @@ export default function postExpense (expense) {
 
     dispatch( { type: "STARTING_DB_CALL" });
 
-    var BASE_URL = 'https://friendlywager.herokuapp.com/write/'
-    var DB_NAME = 'cupBets'
-    var URL = BASE_URL + DB_NAME
+    const BASE_URL = 'https://friendlywager.herokuapp.com/write/';
+    const DB_NAME = 'cupBets';
+    const URL = BASE_URL + DB_NAME;
 
     let settings = {
       type: 'POST',
       contentType: 'application/json',
       url: URL,
       data: JSON.stringify(expense),
-    }
+    };
 
+    /*eslint-env jquery*/
     return $.ajax(settings).then((d,s,x)=>{
-      console.log("dsx ",d,x,s)
-      if (s!="success")
-        alert("error ",s)
-      else if (s=="success"){
-        alert("successfully posted chip bet")
-        dispatch(readChipBetHistory())
+      console.log("dsx ",d,x,s);
+      if (s === "success") {
+        alert("successfully posted chip bet");
+        dispatch(readChipBetHistory());
+      } else {
+        alert("error ", s);
       }
     })
 

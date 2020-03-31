@@ -1,6 +1,6 @@
 import React from "react";
 import Roulette from "./Roulette";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom"
 
 class RoulettePicker extends React.Component {
   constructor(props) {
@@ -9,17 +9,17 @@ class RoulettePicker extends React.Component {
     this.initialState = {
       boardPicked: 0,
       customBoard: [],
-    }
+    };
     this.state = this.initialState
   }
 
   pickGame = e => {
     console.log(e.target.value);
-    this.setState( {boardPicked: parseInt(e.target.value)});
+    this.setState({ boardPicked: parseInt(e.target.value) });
     console.log(this.state);
   };
 
-  resetState(){
+  resetState() {
     this.setState(this.initialState)
   }
 
@@ -27,18 +27,18 @@ class RoulettePicker extends React.Component {
     switch (this.state.boardPicked) {
       case 1:
         return (<div>
-          <Link to="/roulette" onClick={this.resetState}>Back to Roulette Options</Link>
-          <Roulette /></div>
+            <Link to="/roulette" onClick={this.resetState}>Back to Roulette Options</Link>
+            <Roulette /></div>
         );
       case 2:
         return (<div>
-          <Link to="/roulette" onClick={this.resetState}>Back to Roulette Options</Link>
-          <Roulette options={["Win 5", "Lose 1", "Lose 1", "Lose 2", "Lose 2", "Lose 1", "Win 5", "Lose 3"]} /></div>
+            <Link to="/roulette" onClick={this.resetState}>Back to Roulette Options</Link>
+            <Roulette options={["Win 5", "Lose 1", "Lose 1", "Lose 2", "Lose 2", "Lose 1", "Win 5", "Lose 3"]} /></div>
         );
       case 3:
         return (<div>
-          <Link to="/roulette" onClick={this.resetState} to="/roulette">Back to Roulette Options</Link>
-          <Roulette options={["Win 3", "Lose 3", "Win 2", "Lose 2", "Win 1", "Lose 1", "Win 2", "Lose 2"]} /></div>
+            <Link to="/roulette" onClick={this.resetState}>Back to Roulette Options</Link>
+            <Roulette options={["Win 3", "Lose 3", "Win 2", "Lose 2", "Win 1", "Lose 1", "Win 2", "Lose 2"]} /></div>
         );
     }
 

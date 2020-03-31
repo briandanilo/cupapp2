@@ -6,19 +6,28 @@ import Card from "./Card";
 class HandDisplay extends React.Component {
 
   render() {
-    return (<div style={{ display: "flex", flex: 1, flexDirection: "column", justifyContent: "center", minHeight: this.props.cardHeight }}>
+    return (<div style={{
+        display: "flex",
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "center",
+        minHeight: this.props.cardHeight
+      }}>
         {chunk(
           this.props.hand, this.props.maxCardsPerLine)
-          .map(row =>
-            <div style={{
-              display: "flex",
-              flex: 1,
-              flexDirection: "row",
-              justifyContent: "center",
-              marginLeft: this.props.overlap,
-            }}>{row.map(card => <Card card={card}
-                                      overlap={this.props.overlap}
-                                      height={this.props.cardHeight} />)}
+          .map((row, index) =>
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "center",
+                marginLeft: this.props.overlap,
+              }}>{row.map((card, index) => <Card key={index}
+                                                 card={card}
+                                                 overlap={this.props.overlap}
+                                                 height={this.props.cardHeight} />)}
             </div>
           )}
       </div>

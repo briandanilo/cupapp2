@@ -1,22 +1,23 @@
-export default function readExpenseHistory (expense) {
+export default function readExpenseHistory () {
 
   return function (dispatch) {
 
     dispatch( { type: "STARTING_DB_CALL" });
 
-    var BASE_URL = 'https://friendlywager.herokuapp.com/read/'
-    var DB_NAME = 'cupExpenses'
-    var URL = BASE_URL + DB_NAME
+    const BASE_URL = 'https://friendlywager.herokuapp.com/read/';
+    const DB_NAME = 'cupExpenses';
+    const URL = BASE_URL + DB_NAME;
 
     let settings = {
       contentType: 'application/json',
       url: URL,
-    }
+    };
 
+    /*eslint-env jquery*/
     return $.ajax(settings).then((d,s,x)=>{
-      console.log("dsx ",d,x,s)
+      console.log("dsx ",d,x,s);
       //dispatch(sendEmail(bet))
-      dispatch( { type: "GOT_EXPENSE_HISTORY", data:d })
+      dispatch( { type: "GOT_EXPENSE_HISTORY", data:d });
     })
 
     // .then(function (data,err,x) {

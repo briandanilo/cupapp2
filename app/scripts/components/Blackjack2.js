@@ -22,7 +22,7 @@ class Blackjack extends React.Component {
 
   toggleRemoveCards = () => {
     this.resetHands();
-    this.setState( {removeCards: !this.state.removeCards});
+    this.setState({ removeCards: !this.state.removeCards });
   };
 
   resetHands = () => {
@@ -35,8 +35,7 @@ class Blackjack extends React.Component {
   };
 
   deal = () => {
-    if (!this.state.dealerCards.length)
-    {
+    if (!this.state.dealerCards.length) {
       let dealer1 = this.state.someDeck.draw();
       let dealer2 = this.state.someDeck.draw();
       let player1 = this.state.someDeck.draw();
@@ -51,49 +50,47 @@ class Blackjack extends React.Component {
 
   stand = () => {
     this.resetHands()
-  }
+  };
 
   addStandButton = () => {
     if (this.state.dealerCards.length)
-    return (
-      <button className="btn btn-default tools-btn" onClick={this.stand}>Stand
-      </button>)
+      return (
+        <button className="btn btn-default tools-btn" onClick={this.stand}>Stand
+        </button>);
     else
-      return (<div></div>)
-  }
+      return (<div />)
+  };
 
   calcScore = (handArray) => {
     let score = 0;
-    handArray.forEach((i)=>{
-      if (i.rank == 12)
-        score += 1
+    handArray.forEach((i) => {
+      if (i.rank === 12)
+        score += 1;
       else if (i.rank > 7)
-        score += 10
+        score += 10;
       else
-        score += i.rank+2
-    })
+        score += i.rank + 2;
+    });
     return score
-  }
+  };
 
   dealerScore = () => {
-    let score = this.calcScore(this.state.dealerCards)
-    return score
-  }
+    return this.calcScore(this.state.dealerCards);
+  };
 
   playerScore = () => {
-    let score = this.calcScore(this.state.playerCards)
-    return score
-  }
+    return this.calcScore(this.state.playerCards);
+  };
 
   render() {
     return (<div><Link to="/">Back to Homepage</Link>
       <div className="Component">
         <h1>Blackjack</h1>
         <button className="btn btn-default tools-btn" onClick={this.deal}>
-        {this.state.dealerCards.length && "Hit" || "Deal"}
+          {this.state.dealerCards.length && "Hit" || "Deal"}
         </button>
         {this.addStandButton()}
-    </div>
+      </div>
       <div className="Component">
         <p>Dealer ({this.dealerScore()})</p>
         <div key="player1hand" style={styles.handWrapper}>

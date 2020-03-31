@@ -1,14 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react"
+import { Link } from "react-router-dom"
 import { connect } from "react-redux";
-import container from '../containers/all.js'
-//import callGoogleApi from '../actions/googleApi.js'
-import ExpenseForm from './ExpenseForm.js'
+import container from "../containers/all.js"
+import ExpenseForm from "./ExpenseForm.js"
 
 class Expenses extends React.Component {
 
 
-  render () {
+  render() {
     return (
       <div className="ExpensesContainer Component">
         <h3>Expenses</h3>
@@ -18,4 +17,5 @@ class Expenses extends React.Component {
     );
   }
 }
+
 export default connect(container.allState)(Expenses)

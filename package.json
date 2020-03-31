@@ -42,7 +42,10 @@
     "serve": "^5.0.4",
     "style-loader": "^0.15.0",
     "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.11.5"
+    "webpack-dev-server": "^2.11.5",
+    "eslint": "^6.8.0",
+    "babel-eslint": "^10.1.0",
+    "eslint-plugin-react": "^7.19.0"
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
@@ -87,3 +90,5 @@
     }
   }
 }
+
+

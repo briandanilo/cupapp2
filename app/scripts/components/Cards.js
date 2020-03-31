@@ -2,7 +2,6 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux";
 import container from "../containers/all.js"
-import fullDeck from "./fullDeckOfCards.js"
 import Deck from "card-deck";
 import { StartingDeck } from "../models/deck";
 import HandDisplay from "./HandDisplay";
@@ -12,7 +11,6 @@ class Cards extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      deck: fullDeck,
       player1cards: [],
       player2cards: [],
       player3cards: [],
@@ -24,12 +22,11 @@ class Cards extends React.Component {
 
   toggleRemoveCards = () => {
     this.resetHands();
-    this.setState( {removeCards: !this.state.removeCards});
+    this.setState({ removeCards: !this.state.removeCards });
   };
 
   resetHands = () => {
     this.setState({
-      deck: fullDeck,
       player1cards: [],
       player2cards: [],
       player3cards: [],
@@ -58,7 +55,7 @@ class Cards extends React.Component {
         this.setState({ player4cards: [...this.state.player4cards, drawnCard] });
         break;
     }
-    if(!this.state.removeCards){
+    if (!this.state.removeCards) {
       this.state.someDeck.addRandom(drawnCard);
     }
   };

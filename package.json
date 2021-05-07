@@ -71,7 +71,7 @@
     "react-youtube": "^7.9.0",
     "redux": "^3.6.0",
     "semantic-ui-css": "^2.4.1",
-    "underscore": "^1.9.2"
+    "underscore": "^1.12.1"
   },
   "jest": {
     "moduleFileExtensions": [

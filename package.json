@@ -31,7 +31,7 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.10.1",
     "jest": "^19.0.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
     "react-redux": "^5.1.2",
